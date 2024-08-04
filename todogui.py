@@ -54,16 +54,21 @@ class TodoApp:
     def remove_task(self):
         selected_task_index = self.listbox.curselection()
         if selected_task_index:
-            task = self.listbox.get(selected_task_index)
-            self.todo_list.remove_task(task)
-            self.list_tasks()
+            index = selected_task_index[0]
+            task = self.listbox.get(index).lstrip('• ').strip()  # Remove bullet and any extra spaces
+
+            if self.todo_list.remove_task(task):
+                self.listbox.delete(index)
+                print(f"Task '{task}' removed successfully.")
+            else:
+                messagebox.showwarning("Warning", "Task not found in the list!")
         else:
             messagebox.showwarning("Warning", "Please select a task to remove!")
 
     def update_task(self):
         selected_task_index = self.listbox.curselection()
         if selected_task_index:
-            old_task = self.listbox.get(selected_task_index)
+            old_task = self.listbox.get(selected_task_index).lstrip('• ').strip()  # Normalize task
 
             new_task = simpledialog.askstring("Update Task", f"Update '{old_task}' to:")
             if new_task:
