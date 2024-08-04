@@ -5,7 +5,7 @@ A simple and effective tool for managing tasks. This desktop application allows 
 
 Features:
 
-Add new tasks
-Remove selected tasks
-Update existing tasks
+Add new tasks,
+Remove selected tasks,
+Update existing tasks,
 Persistent storage for tasks
